@@ -1,6 +1,10 @@
 import openai
+import os
 
-openai.api_key = "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"
+client = openai(
 
-completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Give me 3 ideas for apps I could build with openai apis "}])
+    api_key=os.environ.get("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"),
+)
+
+completion = client.chat.completions.create(messages=[{"role": "user", "content": "Give me 3 ideas for apps I could build with openai apis "}], model="gpt-3.5-turbo", )
 print(completion.choices[0].message.content)
